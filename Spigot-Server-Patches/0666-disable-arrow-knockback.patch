@@ -1,0 +1,28 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: unknown <tim.kuechler@online.de>
+Date: Sun, 8 Nov 2020 09:31:55 +0100
+Subject: [PATCH] disable arrow knockback
+
+
+diff --git a/src/main/java/net/minecraft/server/EntityArrow.java b/src/main/java/net/minecraft/server/EntityArrow.java
+index 1e7f5957d879d1ba8cf2b29cf9397b8e204e4381..1d28a5abe24d4027160cd8fe34ab655ebc436468 100644
+--- a/src/main/java/net/minecraft/server/EntityArrow.java
++++ b/src/main/java/net/minecraft/server/EntityArrow.java
+@@ -342,13 +342,15 @@ public abstract class EntityArrow extends IProjectile {
+                     entityliving.setArrowCount(entityliving.getArrowCount() + 1);
+                 }
+ 
+-                if (this.knockbackStrength > 0) {
++				//Lostkingdoms start
++                /*if (this.knockbackStrength > 0) {
+                     Vec3D vec3d = this.getMot().d(1.0D, 0.0D, 1.0D).d().a((double) this.knockbackStrength * 0.6D);
+ 
+                     if (vec3d.g() > 0.0D) {
+                         entityliving.i(vec3d.x, 0.1D, vec3d.z);
+                     }
+-                }
++                }*/
++				//Lostkingdoms end
+ 
+                 if (!this.world.isClientSide && entity1 instanceof EntityLiving) {
+                     EnchantmentManager.a(entityliving, entity1);

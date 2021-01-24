@@ -1,0 +1,65 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: unknown <tim.kuechler@online.de>
+Date: Sun, 8 Nov 2020 09:06:00 +0100
+Subject: [PATCH] Disable player knockback sweeping attack and crit
+
+
+diff --git a/src/main/java/net/minecraft/server/EntityHuman.java b/src/main/java/net/minecraft/server/EntityHuman.java
+index 9796b4e57d6680c9f0dc76decdd985572daafb7e..28487106c985fcf50e30b428b06eec28c23292fe 100644
+--- a/src/main/java/net/minecraft/server/EntityHuman.java
++++ b/src/main/java/net/minecraft/server/EntityHuman.java
+@@ -1088,13 +1088,13 @@ public abstract class EntityHuman extends EntityLiving {
+ 
+                     if (flag5) {
+                         if (i > 0) {
+-                            if (entity instanceof EntityLiving) {
+-                                ((EntityLiving) entity).doKnockback((float) i * 0.5F, (double) MathHelper.sin(this.yaw * 0.017453292F), (double) (-MathHelper.cos(this.yaw * 0.017453292F)), this); // Paper
+-                            } else {
+-                                entity.i((double) (-MathHelper.sin(this.yaw * 0.017453292F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(this.yaw * 0.017453292F) * (float) i * 0.5F));
+-                            }
++							//Lostkingdoms start
++                            if (!(entity instanceof EntityLiving)) {
++								entity.i((double) (-MathHelper.sin(this.yaw * 0.017453292F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(this.yaw * 0.017453292F) * (float) i * 0.5F));
++								this.setMot(this.getMot().d(0.6D, 1.0D, 0.6D));
++                            } 
+ 
+-                            this.setMot(this.getMot().d(0.6D, 1.0D, 0.6D));
++                            //Lostkingdoms end
+                             // Paper start - Configuration option to disable automatic sprint interruption
+                             if (!world.paperConfig.disableSprintInterruptionOnAttack) {
+                                 this.setSprinting(false);
+@@ -1102,7 +1102,8 @@ public abstract class EntityHuman extends EntityLiving {
+                             // Paper end
+                         }
+ 
+-                        if (flag3) {
++						//Lostkingdoms start - disable sweeping attack
++                        /*if (flag3) {
+                             float f4 = 1.0F + EnchantmentManager.a((EntityLiving) this) * f;
+                             List<EntityLiving> list = this.world.a(EntityLiving.class, entity.getBoundingBox().grow(1.0D, 0.25D, 1.0D));
+                             Iterator iterator = list.iterator();
+@@ -1121,7 +1122,8 @@ public abstract class EntityHuman extends EntityLiving {
+ 
+                             sendSoundEffect(this, this.locX(), this.locY(), this.locZ(), SoundEffects.ENTITY_PLAYER_ATTACK_SWEEP, this.getSoundCategory(), 1.0F, 1.0F); // Paper - send while respecting visibility
+                             this.ex();
+-                        }
++                        }*/
++						//Lostkingdoms end
+ 
+                         if (entity instanceof EntityPlayer && entity.velocityChanged) {
+                             // CraftBukkit start - Add Velocity Event
+@@ -1146,10 +1148,12 @@ public abstract class EntityHuman extends EntityLiving {
+                             // CraftBukkit end
+                         }
+ 
+-                        if (flag2) {
++						//Lostkingdoms start
++                        /*if (flag2) {
+                             sendSoundEffect(this, this.locX(), this.locY(), this.locZ(), SoundEffects.ENTITY_PLAYER_ATTACK_CRIT, this.getSoundCategory(), 1.0F, 1.0F); // Paper - send while respecting visibility
+                             this.a(entity);
+-                        }
++                        }*/
++						//Lostkingdoms end
+ 
+                         if (!flag2 && !flag3) {
+                             if (flag) {

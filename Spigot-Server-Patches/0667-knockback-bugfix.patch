@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: unknown <tim.kuechler@online.de>
+Date: Sun, 8 Nov 2020 10:38:57 +0100
+Subject: [PATCH] knockback bugfix
+
+
+diff --git a/src/main/java/net/minecraft/server/EntityLiving.java b/src/main/java/net/minecraft/server/EntityLiving.java
+index 0a5235330d417ec41e22f7796e1deff5da38ffb6..6e9f621ad24af0c4c612b745902a5ba9a1199dab 100644
+--- a/src/main/java/net/minecraft/server/EntityLiving.java
++++ b/src/main/java/net/minecraft/server/EntityLiving.java
+@@ -1237,7 +1237,7 @@ public abstract class EntityLiving extends Entity {
+                     this.velocityChanged();
+                 }
+ 
+-                if (entity1 != null) {
++                if (entity1 != null && (entity1 instanceof EntityHuman || entity1 instanceof EntityArrow)) {
+                     double d0 = entity1.locX() - this.locX();
+ 
+                     double d1;
