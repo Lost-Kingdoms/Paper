@@ -1,0 +1,20 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tim=20K=C3=BCchler?= <tim.kuechler@online.de>
+Date: Tue, 26 Jan 2021 10:42:39 +0100
+Subject: [PATCH] Changed KNOCKBACK_RESISTENCE Attribute for Netherite from
+ 0.1f to 0.0f
+
+
+diff --git a/src/main/java/net/minecraft/server/EnumArmorMaterial.java b/src/main/java/net/minecraft/server/EnumArmorMaterial.java
+index 83454f790e4f541fc7c6f1ebcabe194f11c35f42..0c891360a5daeff9f8777074b5d112b4752efd6e 100644
+--- a/src/main/java/net/minecraft/server/EnumArmorMaterial.java
++++ b/src/main/java/net/minecraft/server/EnumArmorMaterial.java
+@@ -16,7 +16,7 @@ public enum EnumArmorMaterial implements ArmorMaterial {
+         return RecipeItemStack.a(Items.DIAMOND);
+     }), TURTLE("turtle", 25, new int[]{2, 5, 6, 2}, 9, SoundEffects.ITEM_ARMOR_EQUIP_TURTLE, 0.0F, 0.0F, () -> {
+         return RecipeItemStack.a(Items.SCUTE);
+-    }), NETHERITE("netherite", 37, new int[]{3, 6, 8, 3}, 15, SoundEffects.ITEM_ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> {
++    }), NETHERITE("netherite", 37, new int[]{3, 6, 8, 3}, 15, SoundEffects.ITEM_ARMOR_EQUIP_NETHERITE, 3.0F, 0.0F, () -> { //Start Lost-Kingdoms - Change Knockback Resistance to 0.0f (from 0.1f)
+         return RecipeItemStack.a(Items.NETHERITE_INGOT);
+     });
+ 
